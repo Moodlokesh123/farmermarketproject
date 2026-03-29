@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Crop</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Add New Crop</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <label>Crop Name</label>
+        {{ form.crop_name }}
+
+        <label>Price (₹)</label>
+        {{ form.price }}
+
+        <label>Quantity</label>
+        {{ form.quantity }}
+
+        <label>Category</label>
+        {{ form.category }}
+
+        <label>Crop Image</label>
+        {{ form.image }}
+
+        <br><br>
+        <button type="submit">Add Crop</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

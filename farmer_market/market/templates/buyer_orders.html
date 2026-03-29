@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Buyer Orders</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Your Orders</h1>
+
+<table class="table">
+<tr>
+<th>Crop</th>
+<th>Quantity</th>
+<th>Price</th>
+<th>Total</th>
+<th>Farmer</th>
+<th>Order Status</th>
+<th>Payment</th>
+</tr>
+
+{% for order in orders %}
+<tr>
+<td>{{ order.crop.crop_name }}</td>
+<td>{{ order.quantity }}</td>
+<td>{{ order.crop.price }}</td>
+<td>{{ order.crop.price|add:"0"|floatformat:0|add:0 }}</td>
+<td>{{ order.crop.farmer.name }}</td>
+
+<td>
+<span class="status {{ order.status }}">
+{{ order.status }}
+</span>
+</td>
+
+<td>
+<span class="payment {{ order.payment_status }}">
+{{ order.payment_status }}
+</span>
+</td>
+
+</tr>
+{% endfor %}
+
+</table>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Cart</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/marketplace.css' %}">
+</head>
+
+<body>
+
+<h2 style="text-align:center;">🛒 Your Cart</h2>
+
+<div class="container">
+
+    {% if cart_items %}
+    
+        {% for item in cart_items %}
+        <div class="crop-card">
+
+            <h3>{{ item.crop.crop_name }}</h3>
+
+            <p>Price: ₹{{ item.crop.price }}</p>
+
+            <!-- Quantity Controls -->
+            <div style="display:flex; align-items:center; gap:10px; justify-content:center;">
+                
+                <a href="{% url 'decrease_quantity' item.crop.id %}" class="cart">➖</a>
+                
+                <span><b>{{ item.quantity }}</b></span>
+                
+                <a href="{% url 'increase_quantity' item.crop.id %}" class="cart">➕</a>
+
+            </div>
+
+            <p>Total: ₹{{ item.subtotal }}</p>
+
+            <!-- Remove -->
+            <a href="{% url 'remove_from_cart' item.crop.id %}" 
+               style="background:red; color:white; padding:6px 10px; text-decoration:none;">
+               Remove
+            </a>
+
+        </div>
+        {% endfor %}
+
+        <h2 style="text-align:center;">Total Amount: ₹{{ total }}</h2>
+
+        <!-- Buttons -->
+        <div style="text-align:center; margin-top:20px;">
+            <a href="/place_order/" class="buy">Place Order</a>
+            <a href="/marketplace/" class="cart">Continue Shopping</a>
+        </div>
+
+    {% else %}
+        <h3 style="text-align:center;">Your cart is empty</h3>
+        <div style="text-align:center;">
+            <a href="/marketplace/" class="buy">Go to Marketplace</a>
+        </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>

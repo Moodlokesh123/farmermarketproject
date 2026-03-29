@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Farmer Marketplace</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="logo">🌾 Farmer Marketplace</div>
+    <div class="nav-links">
+        <a href="/marketplace/">Marketplace</a>
+        <a href="/farmer_login/">Farmer</a>
+        <a href="/buyer_login/">Buyer</a>
+    </div>
+</div>
+
+<div class="glass-container">
+    <div class="glass-card">
+        <h2>Welcome to Farmer Marketplace System</h2>
+
+        <h3>Farmer Section</h3>
+        <a class="home-btn" href="/register_farmer/">Register Farmer</a>
+        <a class="home-btn" href="/farmer_login/">Farmer Login</a>
+
+        <h3>Buyer Section</h3>
+        <a class="home-btn" href="/register_buyer/">Register Buyer</a>
+        <a class="home-btn" href="/buyer_login/">Buyer Login</a>
+    </div>
+</div>
+
+</body>
+</html>

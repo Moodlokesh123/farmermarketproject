@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+</head>
+
+<body>
+
+<div class="main-content">
+
+    <h2>Payment Page</h2>
+
+    <div class="card-container">
+
+        <div class="card">
+            <h3>UPI Payment</h3>
+            <p>Enter UPI ID</p>
+            <input type="text" placeholder="example@upi">
+            <br><br>
+            <a href="{% url 'payment_success' %}" class="btn buy">Pay via UPI</a>
+        </div>
+
+        <div class="card">
+            <h3>QR Code Payment</h3>
+            <img src="{% static 'images/qr.png' %}" width="150">
+            <p>Scan and Pay</p>
+            <a href="{% url 'payment_success' %}" class="btn buy">I Have Paid</a>
+        </div>
+
+        <div class="card">
+            <h3>Debit / Credit Card</h3>
+            <input type="text" placeholder="Card Number"><br><br>
+            <input type="text" placeholder="MM/YY"><br><br>
+            <input type="text" placeholder="CVV"><br><br>
+            <a href="{% url 'payment_success' %}" class="btn buy">Pay Now</a>
+        </div>
+
+        <div class="card">
+            <h3>Cash on Delivery</h3>
+            <p>Pay when product delivered</p>
+            <a href="{% url 'payment_success' %}" class="btn buy">Confirm Order</a>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

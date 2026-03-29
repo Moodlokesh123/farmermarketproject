@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Marketplace</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/marketplace.css' %}">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+
+    <div class="logo">🌾 AgroMart</div>
+
+    <!-- SEARCH -->
+    <form method="GET" action="/marketplace/" class="search-box">
+        <input type="text" name="q" placeholder="Search crops...">
+        <button type="submit">Search</button>
+    </form>
+
+    <div class="nav-links">
+        <a href="{% url 'buyer_dashboard' %}">Dashboard</a>
+        <a href="{% url 'buyer_orders' %}">Orders</a>
+        <a href="{% url 'view_cart' %}">Cart 🛒</a>
+    </div>
+
+</div>
+
+<!-- FILTER BAR -->
+<div class="category-bar">
+    <a href="/marketplace/?category=Grains">🌾 Grains</a>
+    <a href="/marketplace/?category=Fruits">🍎 Fruits</a>
+    <a href="/marketplace/?category=Vegetables">🥦 Vegetables</a>
+    <a href="/marketplace/?category=Organic">🌿 Organic</a>
+    <a href="/marketplace/">All</a>
+</div>
+
+<!-- PRICE FILTER -->
+<div style="text-align:center; margin:15px;">
+    <form method="GET" action="/marketplace/">
+        Min Price:
+        <input type="number" name="min" style="width:80px;">
+        Max Price:
+        <input type="number" name="max" style="width:80px;">
+        <button type="submit">Filter</button>
+    </form>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+
+    <h2>Available Crops</h2>
+
+    <div class="crop-grid">
+
+        {% for crop in crops %}
+        <div class="crop-card">
+
+            {% if crop.image %}
+                <img src="{{ crop.image.url }}" alt="{{ crop.crop_name }}">
+            {% else %}
+                <img src="https://via.placeholder.com/250">
+            {% endif %}
+
+            <h3>{{ crop.crop_name }}</h3>
+
+            <p class="price">₹{{ crop.price }}</p>
+
+            <p>Available Qty: {{ crop.quantity }}</p>
+
+            <p class="farmer">By {{ crop.farmer.name }}</p>
+
+            <div class="card-buttons">
+
+                <a href="{% url 'buy_now' crop.id %}" class="buy">
+                    Buy Now
+                </a>
+
+                <a href="{% url 'add_to_cart' crop.id %}" class="cart">
+                    Add to Cart
+                </a>
+
+            </div>
+
+        </div>
+        {% endfor %}
+
+    </div>
+
+</div>
+
+</body>
+</html>

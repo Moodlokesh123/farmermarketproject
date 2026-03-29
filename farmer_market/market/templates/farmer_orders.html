@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<title>Farmer Orders</title>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Orders Received</h1>
+
+<table>
+<tr>
+<th>Crop</th>
+<th>Buyer</th>
+<th>Quantity</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+
+{% for order in orders %}
+<tr>
+<td>{{ order.crop.crop_name }}</td>
+<td>{{ order.buyer.name }}</td>
+<td>{{ order.quantity }}</td>
+<td>{{ order.status }}</td>
+<td>
+
+{% if order.status == "Pending" %}
+<a class="approve-btn" href="/approve_order/{{ order.id }}/">Approve</a>
+<a class="reject-btn" href="/reject_order/{{ order.id }}/">Reject</a>
+
+{% elif order.status == "Approved" %}
+<a class="approve-btn" href="/deliver_order/{{ order.id }}/">Mark Delivered</a>
+
+{% else %}
+Completed
+{% endif %}
+
+</td>
+</tr>
+{% endfor %}
+</table>
+
+</div>
+
+</body>
+</html>

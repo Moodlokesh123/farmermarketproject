@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<title>Available Crops</title>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Available Crops</h1>
+
+{% for crop in crops %}
+<div class="card">
+<h2>{{ crop.crop_name }}</h2>
+<p>Quantity: {{ crop.quantity }}</p>
+<p>Price: ₹{{ crop.price }}</p>
+</div>
+{% endfor %}
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Farmer Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+</head>
+
+<body>
+
+<div class="sidebar">
+    <h2>Farmer Panel</h2>
+    <a href="/farmer_dashboard/">Dashboard</a>
+    <a href="/add_crop/">Add Crop</a>
+    <a href="/farmer_orders/">Orders</a>
+    <a href="/">Logout</a>
+</div>
+
+<div class="main-content">
+
+    <div class="header">
+        <h2>Farmer Dashboard</h2>
+    </div>
+
+    <div class="card-container">
+        <div class="card">
+            <h3>Total Crops</h3>
+            <p>{{ crops|length }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Total Orders</h3>
+            <p>{{ orders|length }}</p>
+        </div>
+    </div>
+
+    <h2>Your Crops</h2>
+
+    <table>
+        <tr>
+            <th>Crop</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Action</th>
+        </tr>
+
+        {% for crop in crops %}
+        <tr>
+            <td>{{ crop.crop_name }}</td>
+            <td>{{ crop.price }}</td>
+            <td>{{ crop.quantity }}</td>
+            <td>
+                <a class="btn edit" href="/edit_crop/{{ crop.id }}/">Edit</a>
+                <a class="btn delete" href="/delete_crop/{{ crop.id }}/">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+</div>
+
+</body>
+</html>

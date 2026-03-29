@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<title>Buy Crop</title>
+</head>
+
+<body>
+
+<h2>Buy {{ crop.crop_name }}</h2>
+
+<form method="post">
+
+{% csrf_token %}
+
+Name:
+<input type="text" name="name"><br><br>
+
+Phone:
+<input type="text" name="phone"><br><br>
+
+Quantity:
+<input type="number" name="quantity" required><br><br>
+
+<button type="submit">Place Order</button>
+
+</form>
+
+</body>
+</html>

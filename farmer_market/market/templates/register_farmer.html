@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<title>Register Farmer</title>
+</head>
+
+<body>
+
+<div class="container">
+<h2>Farmer Registration</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Register</button>
+</form>
+
+<br>
+<a href="/farmer_login/">Already have account? Login</a>
+
+</div>
+
+</body>
+</html>
